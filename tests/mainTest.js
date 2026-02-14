@@ -1,8 +1,6 @@
 var assert = require('assert');
 var path = require('path');
 var fs = require('fs');
-var phpjs = require('phpjs');
-var Promise = require("es6-promise").Promise;
 var Broccoli = require('broccoli-html-editor');
 
 function makeDefaultBroccoli(callback){
@@ -34,10 +32,6 @@ describe('インスタンス初期化', function() {
 		this.timeout(60*1000);
 
 		makeDefaultBroccoli( function(broccoli){
-			// console.log(broccoli.options.documentRoot);
-			// console.log(broccoli.realpathHtml);
-			// console.log(broccoli.paths_module_template);
-
 			assert.equal(typeof(broccoli.paths_module_template), typeof({}));
 			assert.equal(broccoli.paths_module_template.testMod1, path.resolve(__dirname,'testdata/modules1/')+'/');
 
@@ -53,7 +47,6 @@ describe('ビルドする', function() {
 		this.timeout(15*1000);
 		makeDefaultBroccoli( function(broccoli){
 			var data = require(__dirname+'/testdata/htdocs/test1/test1_files/guieditor.ignore/data.json');
-			// console.log(data);
 			broccoli.buildBowl(
 				data.bowl.main ,
 				{
@@ -61,7 +54,6 @@ describe('ビルドする', function() {
 				} ,
 				function( html, err ){
 					fs.writeFileSync(path.resolve(__dirname, './testdata/htdocs/test1/test1.html'), html);
-					// console.log( html );
 					done();
 				}
 			);
@@ -72,7 +64,6 @@ describe('ビルドする', function() {
 		this.timeout(15*1000);
 		makeDefaultBroccoli( function(broccoli){
 			var data = require(__dirname+'/testdata/htdocs/test1/test1_files/guieditor.ignore/data.json');
-			// console.log(data);
 			broccoli.buildBowl(
 				data.bowl.main ,
 				{
@@ -80,7 +71,6 @@ describe('ビルドする', function() {
 				} ,
 				function( html, err ){
 					fs.writeFileSync(path.resolve(__dirname, './testdata/htdocs/test1/test1.canvas.html'), html);
-					// console.log( html );
 					done();
 				}
 			);

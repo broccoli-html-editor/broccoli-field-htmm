@@ -3,7 +3,6 @@
  */
 window.main = new (function(){
 	var _this = this;
-	var it79 = require('iterate79');
 	var socket;
 	if(window.biflora){
 		socket = this.socket = window.biflora

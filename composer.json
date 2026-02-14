@@ -23,11 +23,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.4.0",
-        "tomk79/filesystem": ">=1.0",
-        "tomk79/request": ">=1.0",
-        "tomk79/php-excel2html": "^0.0.8||~0.1",
-        "michelf/php-markdown": "~1.8"
+        "php": ">=5.4.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~9.5",

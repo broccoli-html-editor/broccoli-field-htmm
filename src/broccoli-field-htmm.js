@@ -1,7 +1,6 @@
 window.BroccoliFieldHtmm = function(broccoli){
 
 	var $ = require('jquery');
-	var it79 = require('iterate79');
 	var _resMgr = broccoli.resourceMgr;
 
 	/**
@@ -13,12 +12,8 @@ window.BroccoliFieldHtmm = function(broccoli){
 		var rtn = '';
 		if( fieldData.src ){
 			rtn += fieldData.src;
-				// v0.3.0: `output` は `src` に改名されました。
-		}else if( fieldData.output ){
-			rtn += fieldData.output;
-				// v0.3.0: 古いバージョンへの互換性維持のため、 `output` がある場合も想定します。
 		}
-		rtn = $('<table>'+rtn+'</table>');
+		rtn = $('<div>'+rtn+'</div>');
 
 		callback( rtn.get(0).outerHTML );
 		return;
@@ -47,17 +42,8 @@ window.BroccoliFieldHtmm = function(broccoli){
 	 * エディタUIを生成 (Client Side)
 	 */
 	this.mkEditor = function( mod, data, elm, callback ){
-		if( !data.src && data.output ){
-			// v0.3.0: `output` は `src` に改名されました。
-			// 古いバージョンへの互換性維持のため、 `output` がある場合も想定します。
-			data.src = data.output;
-			data.output = undefined;
-			delete(data.output);
-		}
-
 		if( !data.src ){
-			// 内容が空白の場合、空のテーブルを生成して初期化する。
-			data.src = "<thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><th></th><td></td><td></td></tr><tr><th></th><td></td><td></td></tr><tr><th></th><td></td><td></td></tr></tbody>";
+			data.src = "";
 		}
 
 		var Editor = require('./editor/editor.js');
@@ -107,8 +93,6 @@ window.BroccoliFieldHtmm = function(broccoli){
 	 */
 	this.saveEditorContent = function( elm, data, mod, callback ){
 		var _this = this;
-		var resInfo,
-			realpathSelected;
 		var $dom = $(elm);
 		if( typeof(data) !== typeof({}) ){
 			data = {};
@@ -152,7 +136,7 @@ window.BroccoliFieldHtmm = function(broccoli){
 		);
 
 		return;
-	} // this.saveEditorContent()
+	}
 
 
 	/**
@@ -246,5 +230,4 @@ window.BroccoliFieldHtmm = function(broccoli){
 		);
 		return;
 	}
-
 };

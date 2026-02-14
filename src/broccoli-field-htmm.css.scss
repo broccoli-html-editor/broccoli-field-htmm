@@ -1,23 +1,4 @@
 .broccoli-field-htmm {
 	display: block;
 	position: relative;
-
-	// table-tag-editor
-	@import "../node_modules/@tomk79/table-tag-editor/src/table-tag-editor";
-
-	&__html-editor {
-		textarea.px2-input {
-			width: 100% !important;
-			height: 480px !important;
-		}
-	}
-}
-
-.broccoli--appearance-dark {
-	@import "../node_modules/@tomk79/table-tag-editor/src/themes/darkmode";
-}
-@media (prefers-color-scheme: dark) { 
-.broccoli--appearance-auto {
-	@import "../node_modules/@tomk79/table-tag-editor/src/themes/darkmode";
-}
 }

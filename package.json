@@ -33,7 +33,6 @@
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
-    "@tomk79/table-tag-editor": "github:tomk79/table-tag-editor#develop",
     "axios": "^0.25",
     "babel-loader": "^8.2.4",
     "biflora": "0.0.1-alpha.1",

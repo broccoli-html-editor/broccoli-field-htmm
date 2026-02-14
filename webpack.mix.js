@@ -42,7 +42,7 @@ mix
 
 
 	// --------------------------------------
-	// table-tag-editor
+	// broccoli-field-htmm
 	.js('src/broccoli-field-htmm.js', 'dist/')
 	.sass('src/broccoli-field-htmm.css.scss', 'dist/broccoli-field-htmm.css')
 

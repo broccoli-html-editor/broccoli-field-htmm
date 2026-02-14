@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/broccoli-html-editor/broccoli-field-htmm#readme",
   "dependencies": {
+    "@tomk79/htmm": "^0.0.1",
     "langbank": "github:tomk79/node-langbank.git#develop"
   },
   "devDependencies": {

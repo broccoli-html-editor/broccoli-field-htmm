@@ -1,0 +1,30 @@
+<div class="broccoli-field-htmm__import-xlsx-modal">
+	<div class="broccoli-field-htmm__import-xlsx-modal__inner">
+
+		<div data-excel-info="">
+		</div>
+
+		<div>
+			<input name="{{ modName }}__import-xlsx-modal__file" type="file" webkitfile="webkitfile" style="width: 100%;" />
+		</div>
+		<div>
+			<span>ヘッダー行:</span>
+			<input name="{{ modName }}__import-xlsx-modal__header_row" type="number" value="0" class="px2-input" style="width: 6em;" />
+		</div>
+		<div>
+			<span>ヘッダー列:</span>
+			<input name="{{ modName }}__import-xlsx-modal__header_col" type="number" value="0" class="px2-input" style="width: 6em;" />
+		</div>
+		<div>
+			<span>再現方法:</span>
+			<label><input name="{{ modName }}__import-xlsx-modal__renderer" type="radio" value="simplify" checked="checked" /><span>単純化</span></label>
+			<label><input name="{{ modName }}__import-xlsx-modal__renderer" type="radio" value="strict" /><span>そのまま表示</span></label>
+		</div>
+		<div>
+			<span>セルの表現方法:</span>
+			<label><input name="{{ modName }}__import-xlsx-modal__cell_renderer" type="radio" value="html" /><span>HTML</span></label>
+			<label><input name="{{ modName }}__import-xlsx-modal__cell_renderer" type="radio" value="text" checked="checked" /><span>テキスト</span></label>
+			<label><input name="{{ modName }}__import-xlsx-modal__cell_renderer" type="radio" value="markdown" /><span>Markdown</span></label>
+		</div>
+	</div>
+</div>

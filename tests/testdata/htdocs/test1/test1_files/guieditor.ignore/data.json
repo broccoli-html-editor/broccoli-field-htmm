@@ -1,0 +1,43 @@
+{
+    "bowl": {
+        "main": {
+            "modId": "_sys/root",
+            "fields": {
+                "main": [
+                    {
+                        "modId": "PlainHTMLElements:PlainHTML/MultiText",
+                        "fields": {
+                            "main": {
+                                "src": "## テーブルを生成するテスト。",
+                                "editor": "markdown"
+                            }
+                        },
+                        "anchor": "",
+                        "dec": ""
+                    },
+                    {
+                        "modId": "testMod1:dev/table",
+                        "fields": {
+                            "table": {
+                                "resKey": "0ae08ffb8162450533b6f4ade011b678",
+                                "output": "<colgroup>\n<col style=\"width:35.483870967742%;\" />\n<col style=\"width:48.387096774194%;\" />\n<col style=\"width:16.129032258065%;\" />\n</colgroup>\n<thead>\n<tr>\n<th style=\"text-align: center;\">カテゴリ</th>\n<th style=\"text-align: center;\">メニュー</th>\n<th style=\"text-align: center;\">価格</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th rowspan=\"8\" style=\"text-align: left;\">麺類</th>\n<td>ラーメン</td>\n<td style=\"text-align: right;\">560</td>\n</tr>\n<tr>\n<td>味噌ラーメン</td>\n<td style=\"text-align: right;\">600</td>\n</tr>\n<tr>\n<td>チャーシュー麺</td>\n<td style=\"text-align: right;\">700</td>\n</tr>\n<tr>\n<td>酸辣湯麺</td>\n<td style=\"text-align: right;\">680</td>\n</tr>\n<tr>\n<td>つけ麺</td>\n<td style=\"text-align: right;\">560</td>\n</tr>\n<tr>\n<td>味噌つけ麺</td>\n<td style=\"text-align: right;\">600</td>\n</tr>\n<tr>\n<td>辛味噌つけ麺</td>\n<td style=\"text-align: right;\">650</td>\n</tr>\n<tr>\n<td>油そば</td>\n<td style=\"text-align: right;\">600</td>\n</tr>\n<tr>\n<th rowspan=\"5\" style=\"text-align: left;\">ごはん</th>\n<td>ごはん小</td>\n<td style=\"text-align: right;\">50</td>\n</tr>\n<tr>\n<td>ごはん中</td>\n<td style=\"text-align: right;\">70</td>\n</tr>\n<tr>\n<td>ごはん大</td>\n<td style=\"text-align: right;\">90</td>\n</tr>\n<tr>\n<td>チャーハン</td>\n<td style=\"text-align: right;\">600</td>\n</tr>\n<tr>\n<td>かにチャーハン</td>\n<td style=\"text-align: right;\">900</td>\n</tr>\n<tr>\n<th rowspan=\"4\" style=\"text-align: left;\">トッピング</th>\n<td>たまご</td>\n<td rowspan=\"3\" style=\"text-align: right;\">50</td>\n</tr>\n<tr>\n<td>なっとう</td>\n</tr>\n<tr>\n<td>メンマ</td>\n</tr>\n<tr>\n<td>チャーシュー</td>\n<td style=\"text-align: right;\">100</td>\n</tr>\n</tbody>\n",
+                                "header_row": "1",
+                                "header_col": "1",
+                                "cell_renderer": "text",
+                                "renderer": "simplify"
+                            }
+                        },
+                        "anchor": "",
+                        "dec": ""
+                    }
+                ]
+            }
+        },
+        "secondly": {
+            "modId": "_sys/root",
+            "fields": {
+                "main": []
+            }
+        }
+    }
+}

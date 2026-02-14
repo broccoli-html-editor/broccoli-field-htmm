@@ -1,0 +1,71 @@
+{
+    "bowl": {
+        "main": {
+            "modId": "_sys/root",
+            "fields": {
+                "main": [
+                    {
+                        "modId": "PlainHTMLElements:PlainHTML/MultiText",
+                        "fields": {
+                            "main": {
+                                "src": "## Excel File",
+                                "editor": "markdown"
+                            }
+                        },
+                        "anchor": "",
+                        "dec": ""
+                    },
+                    {
+                        "modId": "testMod1:dev/table",
+                        "fields": {
+                            "table": {
+                                "resKey": "9d8d3961c3c1cf3725055d908e4be33a",
+                                "output": "<colgroup>\n<col style=\"width:11.864406779661%;\" />\n<col style=\"width:37.28813559322%;\" />\n<col style=\"width:18.64406779661%;\" />\n<col style=\"width:18.64406779661%;\" />\n<col style=\"width:13.559322033898%;\" />\n</colgroup>\n<thead>\n<tr>\n<th>A1</th>\n<th>B1</th>\n<th>C1</th>\n<th>D1</th>\n<th>E1</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>A2</th>\n<td>B2</td>\n<td>C2</td>\n<td>D2</td>\n<td>E2</td>\n</tr>\n<tr>\n<th>A3</th>\n<td>B3</td>\n<td>C3</td>\n<td>D3</td>\n<td>E3</td>\n</tr>\n<tr>\n<th>A4</th>\n<td>B4</td>\n<td>C4</td>\n<td>D4</td>\n<td>E4</td>\n</tr>\n<tr>\n<th>A5</th>\n<td>B5</td>\n<td>C5</td>\n<td>D5</td>\n<td>E5</td>\n</tr>\n<tr>\n<th>A6</th>\n<td>B6</td>\n<td>C5</td>\n<td>D5</td>\n<td>E6</td>\n</tr>\n<tr>\n<th>A7</th>\n<td>B7</td>\n<td>C5</td>\n<td>D5</td>\n<td>E7</td>\n</tr>\n<tr>\n<th>A8</th>\n<td>B8</td>\n<td>C5</td>\n<td>D5</td>\n<td>E8</td>\n</tr>\n<tr>\n<th>A9</th>\n<td>B9</td>\n<td>C5</td>\n<td>D5</td>\n<td>E9</td>\n</tr>\n<tr>\n<th>A10</th>\n<td>B10</td>\n<td>C5</td>\n<td>D5</td>\n<td>E10</td>\n</tr>\n<tr>\n<th>A11</th>\n<td>B11</td>\n<td>C5</td>\n<td>D5</td>\n<td>E11</td>\n</tr>\n<tr>\n<th>A12</th>\n<td>B12</td>\n<td>C5</td>\n<td>D5</td>\n<td>E12</td>\n</tr>\n<tr>\n<th>A13</th>\n<td>B13</td>\n<td>C13</td>\n<td>D13</td>\n<td>E13</td>\n</tr>\n<tr>\n<th>A14</th>\n<td>B14</td>\n<td>C14</td>\n<td>D14</td>\n<td>E14</td>\n</tr>\n<tr>\n<th>A15</th>\n<td>B15</td>\n<td>C15</td>\n<td>D15</td>\n<td>E15</td>\n</tr>\n<tr>\n<th>A16</th>\n<td>B16</td>\n<td>C16</td>\n<td>D16</td>\n<td>E16</td>\n</tr>\n<tr>\n<th>A17</th>\n<td>B17</td>\n<td>C17</td>\n<td>D17</td>\n<td>E17</td>\n</tr>\n<tr>\n<th>A18</th>\n<td>B18</td>\n<td>C18</td>\n<td>D18</td>\n<td>E18</td>\n</tr>\n</tbody>\n",
+                                "header_row": "1",
+                                "header_col": "1",
+                                "cell_renderer": "text",
+                                "renderer": "simplify",
+                                "editor": ""
+                            }
+                        },
+                        "anchor": "",
+                        "dec": ""
+                    },
+                    {
+                        "modId": "PlainHTMLElements:PlainHTML/MultiText",
+                        "fields": {
+                            "main": {
+                                "src": "## HTML Direct Edit",
+                                "editor": "markdown"
+                            }
+                        },
+                        "anchor": "",
+                        "dec": ""
+                    },
+                    {
+                        "modId": "testMod1:dev/table",
+                        "fields": {
+                            "table": {
+                                "resKey": "e1a5fe14c827ce686b6f7d1a05920b1a",
+                                "output": "<thead>\n<tr>\n<th style=\"text-align: center;\">カテゴリ</th>\n<th style=\"text-align: center;\">メニュー</th>\n<th style=\"text-align: center;\">価格(HTML直接編集)</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th rowspan=\"8\" style=\"text-align: left;\">麺類</th>\n<td>ラーメン</td>\n<td style=\"text-align: right;\">560</td>\n</tr>\n<tr>\n<td>味噌ラーメン</td>\n<td style=\"text-align: right;\">600</td>\n</tr>\n<tr>\n<td>チャーシュー麺</td>\n<td style=\"text-align: right;\">700</td>\n</tr>\n<tr>\n<td>酸辣湯麺</td>\n<td style=\"text-align: right;\">680</td>\n</tr>\n<tr>\n<td>つけ麺</td>\n<td style=\"text-align: right;\">560</td>\n</tr>\n<tr>\n<td>味噌つけ麺</td>\n<td style=\"text-align: right;\">600</td>\n</tr>\n<tr>\n<td>辛味噌つけ麺</td>\n<td style=\"text-align: right;\">650</td>\n</tr>\n<tr>\n<td>油そば</td>\n<td style=\"text-align: right;\">600</td>\n</tr>\n<tr>\n<th rowspan=\"5\" style=\"text-align: left;\">ごはん</th>\n<td>ごはん小</td>\n<td style=\"text-align: right;\">50</td>\n</tr>\n<tr>\n<td>ごはん中</td>\n<td style=\"text-align: right;\">70</td>\n</tr>\n<tr>\n<td>ごはん大</td>\n<td style=\"text-align: right;\">90</td>\n</tr>\n<tr>\n<td>チャーハン</td>\n<td style=\"text-align: right;\">600</td>\n</tr>\n<tr>\n<td>かにチャーハン</td>\n<td style=\"text-align: right;\">900</td>\n</tr>\n<tr>\n<th rowspan=\"4\" style=\"text-align: left;\">トッピング</th>\n<td>たまご</td>\n<td rowspan=\"3\" style=\"text-align: right;\">50</td>\n</tr>\n<tr>\n<td>なっとう</td>\n</tr>\n<tr>\n<td>メンマ</td>\n</tr>\n<tr>\n<td>チャーシュー</td>\n<td style=\"text-align: right;\">100</td>\n</tr>\n</tbody>\n",
+                                "header_row": "1",
+                                "header_col": "1",
+                                "cell_renderer": "text",
+                                "renderer": "simplify",
+                                "editor": "html"
+                            }
+                        },
+                        "anchor": "",
+                        "dec": ""
+                    }
+                ]
+            }
+        },
+        "secondly": {
+            "modId": "_sys/root",
+            "fields": {
+                "main": []
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "/dist/broccoli-field-htmm.js": "/dist/broccoli-field-htmm.js",
+    "/tests/testdata/htdocs/index_files/main.js": "/tests/testdata/htdocs/index_files/main.js",
+    "/dist/broccoli-field-htmm.css": "/dist/broccoli-field-htmm.css",
+    "/tests/testdata/htdocs/libs/broccoli-preview-contents.js": "/tests/testdata/htdocs/libs/broccoli-preview-contents.js",
+    "/tests/testdata/htdocs/libs/broccoli-preview-contents.js.LICENSE.txt": "/tests/testdata/htdocs/libs/broccoli-preview-contents.js.LICENSE.txt",
+    "/tests/testdata/htdocs/libs/broccoli.css": "/tests/testdata/htdocs/libs/broccoli.css",
+    "/tests/testdata/htdocs/libs/broccoli.js": "/tests/testdata/htdocs/libs/broccoli.js",
+    "/tests/testdata/htdocs/libs/broccoli.js.LICENSE.txt": "/tests/testdata/htdocs/libs/broccoli.js.LICENSE.txt",
+    "/tests/testdata/htdocs/libs/themes/auto.css": "/tests/testdata/htdocs/libs/themes/auto.css",
+    "/tests/testdata/htdocs/libs/themes/darkmode.css": "/tests/testdata/htdocs/libs/themes/darkmode.css",
+    "/tests/testdata/htdocs/libs/themes/lightmode.css": "/tests/testdata/htdocs/libs/themes/lightmode.css"
+}

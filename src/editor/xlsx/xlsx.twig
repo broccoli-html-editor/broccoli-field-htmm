@@ -1,0 +1,39 @@
+<div class="broccoli-field-htmm">
+    <input type="hidden" name="{{ modName }}__editor" value="" />
+
+    <div data-excel-info="">
+        {% if resKey %}
+            {% if appMode == 'web' %}
+            <button type="button" class="px2-btn px2-btn--download" data-excel-reskey="{{ resKey }}">ダウンロードする</button>
+            {% else %}
+            <button type="button" class="px2-btn px2-btn--primary" data-excel-reskey="{{ resKey }}">編集する</button>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div>
+        <input name="{{ modName }}" type="file" webkitfile="webkitfile" style="width: 100%;" />
+    </div>
+    <div>
+        <span>ヘッダー行:</span>
+        <input name="{{ modName }}__header_row" type="number" value="" class="px2-input" style="width: 6em;" />
+    </div>
+    <div>
+        <span>ヘッダー列:</span>
+        <input name="{{ modName }}__header_col" type="number" value="" class="px2-input" style="width: 6em;" />
+    </div>
+    <div>
+        <span>再現方法:</span>
+        <label><input name="{{ modName }}__renderer" type="radio" value="simplify" /><span>単純化</span></label>
+        <label><input name="{{ modName }}__renderer" type="radio" value="strict" /><span>そのまま表示</span></label>
+    </div>
+    <div>
+        <span>セルの表現方法:</span>
+        <label><input name="{{ modName }}__cell_renderer" type="radio" value="html" /><span>HTML</span></label>
+        <label><input name="{{ modName }}__cell_renderer" type="radio" value="text" /><span>テキスト</span></label>
+        <label><input name="{{ modName }}__cell_renderer" type="radio" value="markdown" /><span>Markdown</span></label>
+    </div>
+
+    <div class="px2-text-align-right">
+        <p><a href="javascript:;" class="px2-a broccoli-field-htmm__change-to-html-mode">HTMLの直接編集に切り替える</a></p>
+    </div>
+</div>

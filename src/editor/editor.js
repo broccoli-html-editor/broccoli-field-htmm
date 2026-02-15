@@ -3,6 +3,12 @@ module.exports = function(broccoli, main, mod, data, elm){
 	var editorData = JSON.parse( JSON.stringify(data) );
 	var LangBank = require('langbank');
 	var languageCsv = require('../../data/language.csv');
+	var React = require('react');
+	var ReactDOM = require('react-dom/client');
+	var htmm = require('@tomk79/htmm');
+	var parseFreeMindXML = htmm.parseFreeMindXML;
+	var useFreeMindStore = htmm.useFreeMindStore;
+	var FreeMindMap = htmm.FreeMindMap;
 
 	this.init = ( callback ) => {
 		return new Promise((resolve, reject) => {
@@ -23,16 +29,33 @@ module.exports = function(broccoli, main, mod, data, elm){
 						}
 					},
 					function(fileInfo){
-						// TODO: `fileInfo.base64` をデコードして、mindmap.mm を取得する。
-						console.log('fileInfo', fileInfo);
-						resolve();
+						var mapData = null;
+						if (fileInfo && fileInfo.base64 && String(fileInfo.base64).trim() !== '') {
+							try {
+								var xmlString = atob(fileInfo.base64);
+								mapData = parseFreeMindXML(xmlString);
+							} catch (e) {
+								console.warn('Failed to decode/parse mindmap, starting with new map:', e);
+							}
+						}
+						resolve(mapData);
 						return;
 					}
 				);
 			});
-		}).then(() => {
+		}).then((mapData) => {
 			return new Promise((resolve, reject) => {
-				// TODO: 取得した `mindmap.mm` で、dom要素 `mod` 上にhtmmエディタを初期化する。
+				var store = useFreeMindStore.getState();
+				if (mapData) {
+					store.loadMap(mapData);
+				} else {
+					store.newMap('New Mind Map');
+				}
+				elm.style.width = '100%';
+				elm.style.height = '100%';
+				elm.style.minHeight = '400px';
+				var root = ReactDOM.createRoot(elm);
+				root.render(React.createElement(FreeMindMap, { width: '100%', height: '100%' }));
 				resolve();
 			});
 		}).catch((e) => {

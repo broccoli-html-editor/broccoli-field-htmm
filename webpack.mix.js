@@ -11,6 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
+const path = require('path');
+
 mix
 	.webpackConfig({
 		module: {
@@ -28,9 +30,41 @@ mix
 						skipEmptyLines: false,
 					},
 				},
+				{
+					test: /\.tsx?$/,
+					use: {
+						loader: 'ts-loader',
+						options: {
+							allowTsInNodeModules: true,
+							transpileOnly: true,
+							compilerOptions: {
+								jsx: 'react-jsx',
+								module: 'ESNext',
+								moduleResolution: 'node',
+								noEmit: false,
+							},
+						},
+					},
+					include: [
+						path.resolve(__dirname, 'src'),
+						path.resolve(__dirname, 'node_modules/@tomk79/htmm'),
+					],
+					exclude: /node_modules\/@tomk79\/htmm\/node_modules/,
+				},
+				{
+					test: /\.css$/,
+					resourceQuery: /\?inline$/,
+					type: 'asset/source',
+					include: path.resolve(__dirname, 'node_modules/@tomk79/htmm'),
+				},
 			]
 		},
 		resolve: {
+			extensions: ['.ts', '.tsx', '.js', '.jsx'],
+			alias: {
+				'react': path.resolve(__dirname, 'node_modules/react'),
+				'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+			},
 			fallback: {
 				"fs": false,
 				"path": false,

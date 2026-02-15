@@ -13,7 +13,7 @@ $broccoli->init(
 	array(
 		'paths_module_template' => array(
 			'PlainHTMLElements' => '../PlainHTMLElements/',
-			'htmm' => '../../../broccoli_modules/'
+			'htmm' => '../../../broccoli_modules/htmm/',
 		) ,
 		'documentRoot' => __DIR__.'/',
 		'pathHtml' => '/'.$edit_page_name.'.html',

@@ -6,6 +6,7 @@
         "path": "broccoli_modules/htmm/"
     },
     {
+        "id": "broccoli-field-htmm",
         "name": "htmm Field",
         "type": "field",
         "backend": {

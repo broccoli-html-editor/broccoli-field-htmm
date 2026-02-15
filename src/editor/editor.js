@@ -32,7 +32,8 @@ module.exports = function(broccoli, main, mod, data, elm){
 						var mapData = null;
 						if (fileInfo && fileInfo.base64 && String(fileInfo.base64).trim() !== '') {
 							try {
-								var xmlString = atob(fileInfo.base64);
+								// UTF-8 を考慮した base64 デコード（saveEditorContent のエンコードと対になる）
+								var xmlString = decodeURIComponent(escape(atob(fileInfo.base64)));
 								mapData = parseFreeMindXML(xmlString);
 							} catch (e) {
 								console.warn('Failed to decode/parse mindmap, starting with new map:', e);

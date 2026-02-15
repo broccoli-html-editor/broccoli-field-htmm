@@ -41,7 +41,7 @@ window.main = new (function(){
 				'lang': 'ja',
 				'appearance': 'light',
 				'customFields': {
-					'table': window.BroccoliFieldHtmm
+					'htmm': window.BroccoliFieldHtmm
 				},
 				'gpiBridge': function(api, options, callback){
 					// General Purpose Interface Bridge

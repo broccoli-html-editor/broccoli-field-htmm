@@ -5,10 +5,10 @@
             "fields": {
                 "main": [
                     {
-                        "modId": "testMod1:dev/htmm",
+                        "modId": "htmm:htmm/mindmap",
                         "fields": {
                             "htmm": {
-                                "resKey": "f485b6d7a0995301b0e74634bc4ed312",
+                                "resKey": "0122216a5900e83040f21462ea7d3928",
                                 "src": ""
                             }
                         },

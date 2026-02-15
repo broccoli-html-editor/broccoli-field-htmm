@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.1"><node ID="ID_1771151663565_7jy3ud4ct" TEXT="New Mind Map" STYLE="fork" CREATED="1771151663565" MODIFIED="1771151663565"><node ID="ID_1771151667900_jzqvc246o" TEXT="New Child Node" POSITION="left" CREATED="1771151667900" MODIFIED="1771151674636"/></node></map>

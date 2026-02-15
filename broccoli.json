@@ -1,16 +1,24 @@
-{
-    "name": "HTMM Field",
-    "type": "field",
-    "backend": {
-        "class": "broccoliHtmlEditor\\broccoliFieldHtmm\\main",
-        "require": "libs/main.js"
+[
+    {
+        "id": "htmm",
+        "name": "Mindmap",
+        "type": "module",
+        "path": "broccoli_modules/htmm/"
     },
-    "frontend": {
-        "dir": "dist/",
-        "file": [
-            "broccoli-field-htmm.css",
-            "broccoli-field-htmm.js"
-        ],
-        "function" : "window.BroccoliFieldHtmm"
+    {
+        "name": "htmm Field",
+        "type": "field",
+        "backend": {
+            "class": "broccoliHtmlEditor\\broccoliFieldHtmm\\main",
+            "require": "libs/main.js"
+        },
+        "frontend": {
+            "dir": "dist/",
+            "file": [
+                "broccoli-field-htmm.css",
+                "broccoli-field-htmm.js"
+            ],
+            "function" : "window.BroccoliFieldHtmm"
+        }
     }
-}
+]

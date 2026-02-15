@@ -22,9 +22,9 @@ module.exports = function(broccoli, main, mod, data, elm){
 							'resKey': editorData.resKey,
 						}
 					},
-					function(fileInfp){
-						// TODO: `fileInfp.base64` をデコードして、mindmap.mm を取得する。
-						console.log('fileInfp', fileInfp);
+					function(fileInfo){
+						// TODO: `fileInfo.base64` をデコードして、mindmap.mm を取得する。
+						console.log('fileInfo', fileInfo);
 						resolve();
 						return;
 					}

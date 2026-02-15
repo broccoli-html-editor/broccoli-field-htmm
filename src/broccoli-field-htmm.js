@@ -28,11 +28,6 @@ window.BroccoliFieldHtmm = function(broccoli){
 			rtn = {
 				"resKey": "",
 				"src": "",
-				"header_row": 0,
-				"header_col": 0,
-				"cell_renderer": "text",
-				"renderer": "simplify",
-				"editor": "html",
 			};
 		}
 		return rtn;
@@ -85,7 +80,7 @@ window.BroccoliFieldHtmm = function(broccoli){
 		resourceIdList = [];
 		resourceIdList.push(data.resKey);
 		callback(resourceIdList);
-		return this;
+		return;
 	}
 
 	/**
@@ -101,40 +96,39 @@ window.BroccoliFieldHtmm = function(broccoli){
 			data.resKey = '';
 		}
 
-		it79.fnc({},
-			[
-				function(it1){
-					data.header_row = $dom.find('input[name="'+mod.name+'__header_row"]').val();
-					data.header_col = $dom.find('input[name="'+mod.name+'__header_col"]').val();
-					data.editor = $dom.find('input[name="'+mod.name+'__editor"]').val();
-					if( !data.editor || data.editor == 'html' ){
-						data.cell_renderer = $dom.find('input[name="'+mod.name+'__cell_renderer"]').val();
-						data.renderer = $dom.find('input[name="'+mod.name+'__renderer"]').val();
-					}else{
-						data.cell_renderer = $dom.find('input[name="'+mod.name+'__cell_renderer"]:checked').val();
-						data.renderer = $dom.find('input[name="'+mod.name+'__renderer"]:checked').val();
-					}
-					it1.next();
-				} ,
-				function(it1){
-					if( !data.editor || data.editor == 'html' ){
-						data.src = $dom.find('textarea[name="'+mod.name+'__src"]').val();
-						it1.next();
-						return;
-					}
-					_this.broccoliFieldHtmm_parseUploadedFileAndGetHtml(data, $dom, function(html){
-						data.src = html;
-						it1.next();
-					});
-					return;
-				} ,
-				function(it1){
-					callback(data);
-					it1.next();
+		new Promise((resolve, reject) => {
+			resolve();
+		}).then(() => {
+			return new Promise((resolve, reject) => {
+				data.header_row = $dom.find('input[name="'+mod.name+'__header_row"]').val();
+				data.header_col = $dom.find('input[name="'+mod.name+'__header_col"]').val();
+				data.editor = $dom.find('input[name="'+mod.name+'__editor"]').val();
+				if( !data.editor || data.editor == 'html' ){
+					data.cell_renderer = $dom.find('input[name="'+mod.name+'__cell_renderer"]').val();
+					data.renderer = $dom.find('input[name="'+mod.name+'__renderer"]').val();
+				}else{
+					data.cell_renderer = $dom.find('input[name="'+mod.name+'__cell_renderer"]:checked').val();
+					data.renderer = $dom.find('input[name="'+mod.name+'__renderer"]:checked').val();
 				}
-			]
-		);
-
+				resolve();
+			});
+		}).then(() => {
+			return new Promise((resolve, reject) => {
+				if( !data.editor || data.editor == 'html' ){
+					data.src = $dom.find('textarea[name="'+mod.name+'__src"]').val();
+					resolve();
+					return;
+				}
+				_this.broccoliFieldHtmm_parseUploadedFileAndGetHtml(data, $dom, function(html){
+					data.src = html;
+					resolve();
+				});
+			});
+		}).catch((e) => {
+			console.error(e);
+		}).finally(() => {
+			callback(data);
+		});
 		return;
 	}
 
@@ -148,86 +142,80 @@ window.BroccoliFieldHtmm = function(broccoli){
 		var resInfo,
 			realpathSelected;
 
-		it79.fnc({},
-			[
-				function(it2){
-					_resMgr.getResource(data.resKey, function(result){
-						if( result === false ){
-							_resMgr.addResource(function(newResKey){
-								data.resKey = newResKey;
-								it2.next();
-							});
-							return;
-						}
-						it2.next();
-					});
-				} ,
-				function(it2){
-					_resMgr.getResource(data.resKey, function(res){
-						resInfo = res;
-						it2.next();
-					});
-					return;
-				} ,
-				function(it2){
-					realpathSelected = $dom.find('input[type=file]').val();
-
-					if( realpathSelected ){
-						// NOTE: Excelファイルが選択された場合、
-						// 選択されたファイルの情報を resourceMgr に登録する。
-						resInfo.ext = $dom.find('div[data-excel-info]').attr('data-extension');
-						resInfo.type = $dom.find('div[data-excel-info]').attr('data-mime-type');
-						resInfo.size = $dom.find('div[data-excel-info]').attr('data-size');
-						resInfo.base64 = $dom.find('div[data-excel-info]').attr('data-base64');
-
-						resInfo.isPrivateMaterial = true;
-							// NOTE: リソースファイルの設置は resourceMgr が行っている。
-							// isPrivateMaterial が true の場合、公開領域への設置は行われない。
-
-						_resMgr.updateResource( data.resKey, resInfo, function(){
+		new Promise((resolve, reject) => {
+			resolve();
+		}).then(() => {
+			return new Promise((resolve, reject) => {
+				_resMgr.getResource(data.resKey, function(result){
+					if( result === false ){
+						_resMgr.addResource(function(newResKey){
+							data.resKey = newResKey;
 							it2.next();
-						} );
-						return;
-					}else{
-						// NOTE: Excelファイルが選択されていない場合、
-						// 過去に登録済みの bin.xlsx が変更されている可能性があるので、
-						// bin2base64 でJSONを更新しておく。
-						_resMgr.resetBase64FromBin( data.resKey, function(){
-							it2.next();
-						} );
+						});
 						return;
 					}
-				} ,
-				// function(it2){
-				// 	// NOTE:
-				// 	// ☓ここで一旦保存しないと、古いデータで変換してしまう。
-				// 	// ○ここで一旦保存しちゃうと、addResource() した新しいデータが削除されてしまう。
-				// 	_resMgr.save( function(){
-				// 		// var res = _resMgr.getResource( data.resKey );
-				// 		it2.next();
-				// 	} );
-				// } ,
-				function(it2){
-					_this.callGpi(
-						{
-							'api': 'excel2html',
-							'data': data,
-						} ,
-						function(result){
-							rtn = result;
-							if( typeof(rtn) !== typeof('') ){
-								rtn = '';
-							}
-							it2.next();
-							return;
+					resolve();
+				});
+			});
+		}).then(() => {
+			return new Promise((resolve, reject) => {
+				_resMgr.getResource(data.resKey, function(res){
+					resInfo = res;
+					resolve();
+				});
+			});
+		}).then(() => {
+			return new Promise((resolve, reject) => {
+				realpathSelected = $dom.find('input[type=file]').val();
+
+				if( realpathSelected ){
+					// NOTE: Excelファイルが選択された場合、
+					// 選択されたファイルの情報を resourceMgr に登録する。
+					resInfo.ext = $dom.find('div[data-excel-info]').attr('data-extension');
+					resInfo.type = $dom.find('div[data-excel-info]').attr('data-mime-type');
+					resInfo.size = $dom.find('div[data-excel-info]').attr('data-size');
+					resInfo.base64 = $dom.find('div[data-excel-info]').attr('data-base64');
+
+					resInfo.isPrivateMaterial = true;
+						// NOTE: リソースファイルの設置は resourceMgr が行っている。
+						// isPrivateMaterial が true の場合、公開領域への設置は行われない。
+
+					_resMgr.updateResource( data.resKey, resInfo, function(){
+						resolve();
+					} );
+					return;
+				}else{
+					// NOTE: Excelファイルが選択されていない場合、
+					// 過去に登録済みの bin.xlsx が変更されている可能性があるので、
+					// bin2base64 でJSONを更新しておく。
+					_resMgr.resetBase64FromBin( data.resKey, function(){
+						resolve();
+					} );
+					return;
+				}
+			});
+		}).then(() => {
+			return new Promise((resolve, reject) => {
+				_this.callGpi(
+					{
+						'api': 'excel2html',
+						'data': data,
+					} ,
+					function(result){
+						rtn = result;
+						if( typeof(rtn) !== typeof('') ){
+							rtn = '';
 						}
-					);
-				} ,
-				function(){
-					callback( rtn );
-				} ,
-			]
-		);
+						resolve();
+						return;
+					}
+				);
+			});
+		}).catch((e) => {
+			console.error(e);
+		}).finally(() => {
+			callback( rtn );
+		});
 		return;
 	}
 };

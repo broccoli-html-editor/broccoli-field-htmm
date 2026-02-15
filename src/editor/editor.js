@@ -4,15 +4,41 @@ module.exports = function(broccoli, main, mod, data, elm){
 	var LangBank = require('langbank');
 	var languageCsv = require('../../data/language.csv');
 
-	this.init = function( callback ){
-
-		this.lb = new LangBank(
-			languageCsv,
-			function(){
-				_this.lb.setLang( broccoli.lb.getLang() );
-				callback();
-			}
-		);
-
+	this.init = ( callback ) => {
+		return new Promise((resolve, reject) => {
+			this.lb = new LangBank(
+				languageCsv,
+				function(){
+					_this.lb.setLang( broccoli.lb.getLang() );
+					resolve();
+				}
+			);
+		}).then(() => {
+			return new Promise((resolve, reject) => {
+				main.callGpi(
+					{
+						'api': 'getFileInfo',
+						'data': {
+							'resKey': editorData.resKey,
+						}
+					},
+					function(fileInfp){
+						// TODO: `fileInfp.base64` をデコードして、mindmap.mm を取得する。
+						console.log('fileInfp', fileInfp);
+						resolve();
+						return;
+					}
+				);
+			});
+		}).then(() => {
+			return new Promise((resolve, reject) => {
+				// TODO: 取得した `mindmap.mm` で、dom要素 `mod` 上にhtmmエディタを初期化する。
+				resolve();
+			});
+		}).catch((e) => {
+			console.error(e);
+		}).finally(() => {
+			callback();
+		});
 	}
 }

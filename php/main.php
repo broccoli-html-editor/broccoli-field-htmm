@@ -38,6 +38,11 @@ class main extends \broccoliHtmlEditor\fieldBase{
 		$_resMgr = $this->broccoli->resourceMgr();
 
 		switch($options['api']){
+			case 'getFileInfo':
+				$resInfo = $_resMgr->getResource( $options['data']['resKey'] );
+				return $resInfo;
+				break;
+
 			default:
 				return array('result' => false, 'message' => 'ERROR: Unknown API');
 				break;

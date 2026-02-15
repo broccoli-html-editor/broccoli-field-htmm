@@ -7,7 +7,17 @@
                     {
                         "modId": "testMod1:dev/htmm",
                         "fields": {
-                            "htmm": ""
+                            "htmm": {
+                                "resKey": ""
+                            }
+                        },
+                        "anchor": "",
+                        "dec": "",
+                        "locked": {
+                            "contents": false,
+                            "children": false,
+                            "move": false,
+                            "delete": false
                         }
                     }
                 ]

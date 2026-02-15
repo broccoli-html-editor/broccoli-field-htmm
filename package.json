@@ -1,1 +1,73 @@
-{"private":true,"main":"libs/main.js","scripts":{"dev":"npm run development","development":"mix","watch":"mix watch","watch-poll":"mix watch -- --watch-options-poll=1000","hot":"mix watch --hot","prod":"npm run production","production":"mix --production","start":"node ./tests/biflora/server.js;","up":"node ./tests/biflora/server.js;","preview":"open http://127.0.0.1:8088/;","test":"mocha --ui tdd ./tests/","testcafe":"./node_modules/.bin/testcafe firefox:headless ./tests/testcafe/mainTest.js --skip-js-errors --app \"php -S 127.0.0.1:8088 -t ./\""},"repository":{"type":"git","url":"git+https://github.com/broccoli-html-editor/broccoli-field-htmm.git"},"author":"Tomoya Koyanagi","license":"MIT","bugs":{"url":"https://github.com/broccoli-html-editor/broccoli-field-htmm/issues"},"homepage":"https://github.com/broccoli-html-editor/broccoli-field-htmm#readme","dependencies":{"@tomk79/htmm":"github:tomk79/htmm#develop","langbank":"github:tomk79/node-langbank.git#develop","react":"^19.0.0","react-dom":"^19.0.0"},"devDependencies":{"@babel/core":"^7.17.8","@babel/preset-env":"^7.16.11","@babel/preset-react":"^7.16.7","axios":"^0.25","babel-loader":"^8.2.4","biflora":"0.0.1-alpha.1","body-parser":"^1.17.1","csv-loader":"^3.0.3","express":"^4.15.2","express-session":"^1.17.2","fs-extra":"^7.0.1","jquery":"^3.6.0","laravel-mix":"^6.0.6","lodash":"^4.17.21","marked":"^4.0.12","mocha":"^10.1.0","postcss":"^8.1.14","px2style":"github:pickles2/px2style#develop","resolve-url-loader":"^5.0.0","sass":"^1.49.9","sass-loader":"^12.6.0","testcafe":"^1.17.1","twig-loader":"^0.5.5","url-parse":"^1.5.10","ts-loader":"^9.5.1","typescript":"^5.9.0"},"baobabConfig":{"defaultPort":8088,"frontendDocumentRoot":"./tests/testdata/htdocs/","backendJs":"./tests/baobab/backend/main.js","backendApis":"./tests/baobab/backend/apis/"}}
+{
+	"private": true,
+	"main": "libs/main.js",
+	"scripts": {
+		"dev": "npm run development",
+		"development": "webpack --mode development",
+		"watch": "webpack --mode development --watch",
+		"watch-poll": "webpack --mode development --watch --watch-options-poll=1000",
+		"hot": "webpack serve --mode development --hot",
+		"prod": "npm run production",
+		"production": "webpack --mode production",
+		"start": "node ./tests/biflora/server.js;",
+		"up": "node ./tests/biflora/server.js;",
+		"preview": "open http://127.0.0.1:8088/;",
+		"test": "mocha --ui tdd ./tests/",
+		"testcafe": "./node_modules/.bin/testcafe firefox:headless ./tests/testcafe/mainTest.js --skip-js-errors --app \"php -S 127.0.0.1:8088 -t ./\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/broccoli-html-editor/broccoli-field-htmm.git"
+	},
+	"author": "Tomoya Koyanagi",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/broccoli-html-editor/broccoli-field-htmm/issues"
+	},
+	"homepage": "https://github.com/broccoli-html-editor/broccoli-field-htmm#readme",
+	"dependencies": {
+		"@tomk79/htmm": "github:tomk79/htmm#develop",
+		"langbank": "github:tomk79/node-langbank.git#develop",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.17.8",
+		"@babel/preset-env": "^7.16.11",
+		"@babel/preset-react": "^7.16.7",
+		"axios": "^0.25",
+		"babel-loader": "^8.2.4",
+		"biflora": "0.0.1-alpha.1",
+		"body-parser": "^1.17.1",
+		"copy-webpack-plugin": "^12.0.2",
+		"css-loader": "^6.10.0",
+		"csv-loader": "^3.0.3",
+		"express": "^4.15.2",
+		"express-session": "^1.17.2",
+		"fs-extra": "^7.0.1",
+		"jquery": "^3.6.0",
+		"lodash": "^4.17.21",
+		"mini-css-extract-plugin": "^2.9.2",
+		"marked": "^4.0.12",
+		"mocha": "^10.1.0",
+		"postcss": "^8.1.14",
+		"postcss-loader": "^8.1.1",
+		"px2style": "github:pickles2/px2style#develop",
+		"resolve-url-loader": "^5.0.0",
+		"sass": "^1.49.9",
+		"sass-loader": "^12.6.0",
+		"testcafe": "^1.17.1",
+		"twig-loader": "^0.5.5",
+		"url-parse": "^1.5.10",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.9.0",
+		"webpack": "^5.96.0",
+		"webpack-cli": "^5.1.4"
+	},
+	"baobabConfig": {
+		"defaultPort": 8088,
+		"frontendDocumentRoot": "./tests/testdata/htdocs/",
+		"backendJs": "./tests/baobab/backend/main.js",
+		"backendApis": "./tests/baobab/backend/apis/"
+	}
+}

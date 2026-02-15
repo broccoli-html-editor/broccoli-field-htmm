@@ -71,7 +71,7 @@ mix
 				"crypto": false,
 				"stream": false,
 			}
-		}
+		},
 	})
 
 
@@ -88,3 +88,12 @@ mix
 	// Static libs
 	.copyDirectory('vendor/broccoli-html-editor/broccoli-html-editor/client/dist/', 'tests/testdata/htdocs/libs/')
 ;
+
+// dist/ に broccoli-field-htmm.js のみ出力するため、別チャンク（332.js, 354.js）を出さない
+mix.webpackConfig((webpack) => ({
+	optimization: {
+		splitChunks: false,
+		runtimeChunk: false,
+	},
+	plugins: [new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 2 })],
+}));

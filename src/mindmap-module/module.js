@@ -1,6 +1,6 @@
 /**
  * Mindmap 再生用エントリ
- * 公開ページ上の .htmm-mindmap 要素を列挙し、data-res-url または data-htmm-base64 から
+ * 公開ページ上の .htmm-mindmap 要素を列挙し、data-src または data-htmm-base64 から
  * .mm データを取得して FreeMindMap で描画する。
  * Broccoli の buildModuleResources により common/js/module.js に結合されて配信される。
  */
@@ -25,17 +25,17 @@
 	}
 
 	function getDataEl(container) {
-		// データは .htmm-mindmap 自身か、その子の [data-res-url] / [data-htmm-base64] に付与される
-		if (container.getAttribute('data-res-url') || container.getAttribute('data-htmm-base64')) {
+		// データは .htmm-mindmap 自身か、その子の [data-src] / [data-htmm-base64] に付与される
+		if (container.getAttribute('data-src') || container.getAttribute('data-htmm-base64')) {
 			return container;
 		}
-		var child = container.querySelector('[data-res-url], [data-htmm-base64]');
+		var child = container.querySelector('[data-src], [data-htmm-base64]');
 		return child || container;
 	}
 
 	function loadMapDataFromElement(elm) {
 		var dataEl = getDataEl(elm);
-		var resUrl = dataEl.getAttribute('data-res-url');
+		var resUrl = dataEl.getAttribute('data-src');
 		var base64 = dataEl.getAttribute('data-htmm-base64');
 		if (base64 && base64.trim() !== '') {
 			return Promise.resolve(decodeBase64Xml(base64.trim()));

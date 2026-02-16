@@ -14,7 +14,7 @@ module.exports = (env, argv) => {
 		entry: {
 			'broccoli-field-htmm': './src/broccoli-field-htmm.js',
 			'broccoli-field-htmm.css': './src/broccoli-field-htmm.css.scss',
-			'mindmap-module': './src/mindmap-module/entry.js',
+			'mindmap-module': './src/mindmap-module/module.js',
 			main: './tests/testdata/htdocs/index_files/main.src.js',
 		},
 

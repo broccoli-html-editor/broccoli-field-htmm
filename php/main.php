@@ -12,7 +12,7 @@ class main extends \broccoliHtmlEditor\fieldBase{
 
 	/**
 	 * データをバインドする
-	 * 公開時（$mode != 'canvas'）に resKey がある場合、data-res-url を付与し、
+	 * 公開時（$mode != 'canvas'）に resKey がある場合、data-src を付与し、
 	 * 制作ページの module.js が Mindmap を再生できるようにする。
 	 */
 	public function bind( $fieldData, $mode, $mod ){
@@ -35,7 +35,7 @@ class main extends \broccoliHtmlEditor\fieldBase{
 			if( $resKey !== '' ){
 				$resMgr = $this->broccoli->resourceMgr();
 				$resUrl = $resMgr->getResourcePublicPath( $resKey );
-				$rtn .= '<span data-res-url="' . htmlspecialchars($resUrl, ENT_QUOTES, 'UTF-8') . '" style="display:none" aria-hidden="true"></span>';
+				$rtn .= '<span data-src="' . htmlspecialchars($resUrl, ENT_QUOTES, 'UTF-8') . '" style="display:none" aria-hidden="true"></span>';
 			}
 		}
 		return $rtn;

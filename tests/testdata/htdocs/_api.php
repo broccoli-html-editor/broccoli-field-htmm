@@ -20,7 +20,7 @@ $broccoli->init(
 		'pathResourceDir' => '/'.$edit_page_name.'_files/resources/',
 		'realpathDataDir' => __DIR__.'/'.$edit_page_name.'_files/guieditor.ignore/',
 		'customFields' => array(
-			'htmm' => 'broccoliHtmlEditor\broccoliFieldHtmm\main'
+			'broccoli-field-htmm' => 'broccoliHtmlEditor\broccoliFieldHtmm\main'
 		) ,
 		'bindTemplate' => function($htmls){
 			$fin = '';

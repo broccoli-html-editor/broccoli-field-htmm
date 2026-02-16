@@ -12,33 +12,21 @@ class main extends \broccoliHtmlEditor\fieldBase{
 
 	/**
 	 * データをバインドする
-	 * 公開時（$mode != 'canvas'）に resKey がある場合、data-src を付与し、
-	 * 制作ページの module.js が Mindmap を再生できるようにする。
+	 * resKey がある場合、公開URL（$resUrl）のみを返す。
+	 * テンプレート側で .htmm-mindmap の data-src にバインドし、
+	 * 公開ページの module.js が Mindmap を再生する。
 	 */
 	public function bind( $fieldData, $mode, $mod ){
 		if(!$fieldData){
 			$fieldData = array();
 		}
-		$rtn = '';
 
-		if( isset($fieldData['src']) && $fieldData['src'] ){
-			$rtn .= $fieldData['src'];
+		$resKey = isset($fieldData['resKey']) ? trim($fieldData['resKey']) : '';
+		if( $resKey !== '' ){
+			$resMgr = $this->broccoli->resourceMgr();
+			return $resMgr->getResourcePublicPath( $resKey );
 		}
-
-		if( $mode == 'canvas' ){
-			if( !strlen($rtn) ){
-				$rtn .= '<div>'.$this->broccoli->lb()->get('ui_message.double_click_to_edit').'</div>';
-			}
-		} else {
-			// 公開モード: resMgr で公開パスを取得し、再生用 data 属性を出力
-			$resKey = isset($fieldData['resKey']) ? trim($fieldData['resKey']) : '';
-			if( $resKey !== '' ){
-				$resMgr = $this->broccoli->resourceMgr();
-				$resUrl = $resMgr->getResourcePublicPath( $resKey );
-				$rtn .= '<span data-src="' . htmlspecialchars($resUrl, ENT_QUOTES, 'UTF-8') . '" style="display:none" aria-hidden="true"></span>';
-			}
-		}
-		return $rtn;
+		return '';
 	}
 
 	/**

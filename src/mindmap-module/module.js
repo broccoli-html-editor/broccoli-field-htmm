@@ -25,7 +25,8 @@
 	}
 
 	function getDataEl(container) {
-		// データは .htmm-mindmap 自身か、その子の [data-src] / [data-htmm-base64] に付与される
+		// データは .htmm-mindmap の data-src（または data-htmm-base64）にバインドされる
+		// 後方互換のため、子要素の [data-src] / [data-htmm-base64] も参照する
 		if (container.getAttribute('data-src') || container.getAttribute('data-htmm-base64')) {
 			return container;
 		}

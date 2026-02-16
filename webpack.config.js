@@ -14,6 +14,7 @@ module.exports = (env, argv) => {
 		entry: {
 			'broccoli-field-htmm': './src/broccoli-field-htmm.js',
 			'broccoli-field-htmm.css': './src/broccoli-field-htmm.css.scss',
+			'mindmap-module': './src/mindmap-module/entry.js',
 			main: './tests/testdata/htdocs/index_files/main.src.js',
 		},
 
@@ -24,9 +25,14 @@ module.exports = (env, argv) => {
 				if (name === 'main') {
 					return 'tests/testdata/htdocs/index_files/main.js';
 				}
+				if (name === 'mindmap-module') {
+					return 'broccoli_modules/htmm/mindmaps/mindmap/module.js';
+				}
 				return 'dist/[name].js';
 			},
 			publicPath: '/',
+			// 動的 import を別ファイルにせずメインバンドルに含める（common/js/module.js を 1 本で配るため）
+			asyncChunks: false,
 		},
 
 		optimization: {
@@ -132,7 +138,7 @@ module.exports = (env, argv) => {
 					return 'dist/[name].css';
 				},
 			}),
-			new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 3 }),
+			new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 4 }),
 			new CopyPlugin({
 				patterns: [
 					{

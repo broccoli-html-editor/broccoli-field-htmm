@@ -1,0 +1,8 @@
+/**
+ * Mindmap モジュール（公開ページ再生用）のスタイル
+ * Broccoli の buildModuleResources により common/css/module.css に結合される。
+ */
+.htmm-mindmap {
+	min-height: 400px;
+	width: 100%;
+}

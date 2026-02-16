@@ -11,7 +11,6 @@
 	var ReactDOM = require('react-dom/client');
 	var htmm = require('@tomk79/htmm');
 	var parseFreeMindXML = htmm.parseFreeMindXML;
-	var useFreeMindStore = htmm.useFreeMindStore;
 	var FreeMindMap = htmm.FreeMindMap;
 
 	function decodeBase64Xml(base64) {
@@ -52,32 +51,20 @@
 
 	function mountMindmap(container, mapData) {
 		if (!mapData) return;
-		var store = useFreeMindStore.getState();
-		store.loadMap(mapData);
 		container.style.width = container.style.width || '100%';
 		container.style.height = container.style.height || '100%';
 		container.style.minHeight = container.style.minHeight || '400px';
 		var root = ReactDOM.createRoot(container);
-		root.render(React.createElement(FreeMindMap, { width: '100%', height: '100%' }));
+		root.render(React.createElement(FreeMindMap, { width: '100%', height: '100%', initialMapData: mapData }));
 	}
 
 	function init() {
 		var containers = document.querySelectorAll('.htmm-mindmap');
-		// 現在の htmm はグローバル単一ストアのため、複数ある場合は先頭1件のみ描画する
-		var firstWithData = null;
-		var pending = [];
+		// 各要素に initialMapData を渡して複数インスタンス対応
 		containers.forEach(function(elm) {
-			var p = loadMapDataFromElement(elm).then(function(mapData) {
-				if (mapData && !firstWithData) {
-					firstWithData = { elm: elm, mapData: mapData };
-				}
+			loadMapDataFromElement(elm).then(function(mapData) {
+				if (mapData) mountMindmap(elm, mapData);
 			});
-			pending.push(p);
-		});
-		Promise.all(pending).then(function() {
-			if (firstWithData) {
-				mountMindmap(firstWithData.elm, firstWithData.mapData);
-			}
 		});
 	}
 

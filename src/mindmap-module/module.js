@@ -55,7 +55,7 @@
 		container.style.height = container.style.height || '100%';
 		container.style.minHeight = container.style.minHeight || '400px';
 		var root = ReactDOM.createRoot(container);
-		root.render(React.createElement(HtmmMap, { width: '100%', height: '100%', initialMapData: mapData }));
+		root.render(React.createElement(HtmmMap, { width: '100%', height: '100%', initialMapData: mapData, readOnly: true }));
 	}
 
 	function init() {

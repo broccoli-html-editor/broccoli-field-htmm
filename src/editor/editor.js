@@ -6,9 +6,9 @@ module.exports = function(broccoli, main, mod, data, elm){
 	var React = require('react');
 	var ReactDOM = require('react-dom/client');
 	var htmm = require('@tomk79/htmm');
-	var parseFreeMindXML = htmm.parseFreeMindXML;
-	var useFreeMindStore = htmm.useFreeMindStore;
-	var FreeMindMap = htmm.FreeMindMap;
+	var parseMindMapXML = htmm.parseMindMapXML;
+	var useHtmmStore = htmm.useHtmmStore;
+	var HtmmMap = htmm.HtmmMap;
 
 	this.init = ( callback ) => {
 		return new Promise((resolve, reject) => {
@@ -34,7 +34,7 @@ module.exports = function(broccoli, main, mod, data, elm){
 							try {
 								// UTF-8 を考慮した base64 デコード（saveEditorContent のエンコードと対になる）
 								var xmlString = decodeURIComponent(escape(atob(fileInfo.base64)));
-								mapData = parseFreeMindXML(xmlString);
+								mapData = parseMindMapXML(xmlString);
 							} catch (e) {
 								console.warn('Failed to decode/parse mindmap, starting with new map:', e);
 							}
@@ -46,7 +46,7 @@ module.exports = function(broccoli, main, mod, data, elm){
 			});
 		}).then((mapData) => {
 			return new Promise((resolve, reject) => {
-				var store = useFreeMindStore.getState();
+				var store = useHtmmStore.getState();
 				if (mapData) {
 					store.loadMap(mapData);
 				} else {
@@ -56,7 +56,7 @@ module.exports = function(broccoli, main, mod, data, elm){
 				elm.style.height = '100%';
 				elm.style.minHeight = '400px';
 				var root = ReactDOM.createRoot(elm);
-				root.render(React.createElement(FreeMindMap, { width: '100%', height: '100%' }));
+				root.render(React.createElement(HtmmMap, { width: '100%', height: '100%' }));
 				resolve();
 			});
 		}).catch((e) => {

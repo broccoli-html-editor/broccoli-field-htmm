@@ -1,7 +1,7 @@
 /**
  * Mindmap 再生用エントリ
  * 公開ページ上の .htmm-mindmap 要素を列挙し、data-src または data-htmm-base64 から
- * .mm データを取得して FreeMindMap で描画する。
+ * .mm データを取得して HtmmMap で描画する。
  * Broccoli の buildModuleResources により common/js/module.js に結合されて配信される。
  */
 (function() {
@@ -10,13 +10,13 @@
 	var React = require('react');
 	var ReactDOM = require('react-dom/client');
 	var htmm = require('@tomk79/htmm');
-	var parseFreeMindXML = htmm.parseFreeMindXML;
-	var FreeMindMap = htmm.FreeMindMap;
+	var parseMindMapXML = htmm.parseMindMapXML;
+	var HtmmMap = htmm.HtmmMap;
 
 	function decodeBase64Xml(base64) {
 		try {
 			var xmlString = decodeURIComponent(escape(atob(base64)));
-			return parseFreeMindXML(xmlString);
+			return parseMindMapXML(xmlString);
 		} catch (e) {
 			console.warn('Failed to decode/parse mindmap base64:', e);
 			return null;
@@ -55,7 +55,7 @@
 		container.style.height = container.style.height || '100%';
 		container.style.minHeight = container.style.minHeight || '400px';
 		var root = ReactDOM.createRoot(container);
-		root.render(React.createElement(FreeMindMap, { width: '100%', height: '100%', initialMapData: mapData }));
+		root.render(React.createElement(HtmmMap, { width: '100%', height: '100%', initialMapData: mapData }));
 	}
 
 	function init() {

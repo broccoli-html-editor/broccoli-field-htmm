@@ -85,7 +85,7 @@ window.BroccoliFieldHtmm = function(broccoli){
 
 	/**
 	 * エディタUIで編集した内容を保存
-	 * htmm の FreeMind ストアから mapData を取り出し、.mm XML を resMgr に保存する。
+	 * htmm のストアから mapData を取り出し、.mm XML を resMgr に保存する。
 	 */
 	this.saveEditorContent = function( elm, data, mod, callback ){
 		if( typeof(data) !== typeof({}) ){
@@ -96,16 +96,16 @@ window.BroccoliFieldHtmm = function(broccoli){
 		}
 
 		var htmm = require('@tomk79/htmm');
-		var useFreeMindStore = htmm.useFreeMindStore;
-		var generateFreeMindXML = htmm.generateFreeMindXML;
+		var useHtmmStore = htmm.useHtmmStore;
+		var generateMindMapXML = htmm.generateMindMapXML;
 
-		var mapData = useFreeMindStore.getState().mapData;
+		var mapData = useHtmmStore.getState().mapData;
 		if( !mapData ){
 			callback(data);
 			return;
 		}
 
-		var xmlString = generateFreeMindXML(mapData);
+		var xmlString = generateMindMapXML(mapData);
 		// UTF-8 を考慮した base64 エンコード（マルチバイト文字対応）
 		var base64 = btoa(unescape(encodeURIComponent(xmlString)));
 

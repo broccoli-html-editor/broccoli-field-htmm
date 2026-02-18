@@ -75,6 +75,19 @@ $broccoli->init(
 	)
 );
 
+// Broccoliモジュールアセット(JSとCSS)をビルドして展開
+$htdocsDir = __DIR__ . '/';
+$moduleCssPath = $htdocsDir . 'common/css/module.css';
+$moduleJsPath = $htdocsDir . 'common/js/module.js';
+if (!is_dir(dirname($moduleCssPath))) {
+	mkdir(dirname($moduleCssPath), 0755, true);
+}
+if (!is_dir(dirname($moduleJsPath))) {
+	mkdir(dirname($moduleJsPath), 0755, true);
+}
+file_put_contents($moduleCssPath, $broccoli->buildModuleCss());
+file_put_contents($moduleJsPath, $broccoli->buildModuleJs());
+
 
 $rtn = $broccoli->gpi(
 	$_REQUEST['api'],

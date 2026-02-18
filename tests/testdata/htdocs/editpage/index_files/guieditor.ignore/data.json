@@ -27,7 +27,25 @@
         "secondly": {
             "modId": "_sys/root",
             "fields": {
-                "main": []
+                "main": [
+                    {
+                        "modId": "htmm:mindmaps/mindmap",
+                        "fields": {
+                            "htmm": {
+                                "resKey": "58e24dc4ba6463420459f9d10a4ddbdf",
+                                "src": ""
+                            }
+                        },
+                        "anchor": "",
+                        "dec": "",
+                        "locked": {
+                            "contents": false,
+                            "children": false,
+                            "move": false,
+                            "delete": false
+                        }
+                    }
+                ]
             }
         }
     }

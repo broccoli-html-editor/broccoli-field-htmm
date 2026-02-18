@@ -60,17 +60,51 @@ module.exports = function(broccoli, main, mod, data, elm){
 				};
 				applyMaxHeight();
 				window.addEventListener('resize', applyMaxHeight);
+
+				var editorContainer = document.createElement('div');
+				editorContainer.className = 'broccoli-field-htmm-editor-container';
+
+				var toolbar = document.createElement('div');
+				toolbar.className = 'broccoli-field-htmm-toolbar';
+				var fullscreenBtn = document.createElement('button');
+				fullscreenBtn.type = 'button';
+				fullscreenBtn.textContent = _this.lb.get('ui_label.fullscreen');
+				toolbar.appendChild(fullscreenBtn);
+				editorContainer.appendChild(toolbar);
+
 				var wrapper = document.createElement('div');
 				wrapper.className = 'broccoli-field-htmm';
-				// position:absolute で elm いっぱいに広げ、wrapper に確定した高さを出して htmm の 100% を効かせる
-				wrapper.style.position = 'absolute';
-				wrapper.style.top = '0';
-				wrapper.style.left = '0';
-				wrapper.style.right = '0';
-				wrapper.style.bottom = '0';
-				wrapper.style.width = '100%';
-				wrapper.style.height = '100%';
-				elm.appendChild(wrapper);
+				editorContainer.appendChild(wrapper);
+				elm.appendChild(editorContainer);
+
+				function isFullscreen() {
+					var el = document.fullscreenElement || document.webkitFullscreenElement;
+					return el === editorContainer;
+				}
+				function updateFullscreenButtonLabel() {
+					fullscreenBtn.textContent = isFullscreen()
+						? _this.lb.get('ui_label.exit_fullscreen')
+						: _this.lb.get('ui_label.fullscreen');
+				}
+				function onFullscreenChange() {
+					updateFullscreenButtonLabel();
+					if (!isFullscreen()) {
+						window.dispatchEvent(new Event('resize'));
+					}
+				}
+				document.addEventListener('fullscreenchange', onFullscreenChange);
+				document.addEventListener('webkitfullscreenchange', onFullscreenChange);
+
+				fullscreenBtn.addEventListener('click', function() {
+					if (isFullscreen()) {
+						var exitFn = document.exitFullscreen || document.webkitExitFullscreen;
+						if (exitFn) exitFn.call(document);
+					} else {
+						var requestFn = editorContainer.requestFullscreen || editorContainer.webkitRequestFullscreen;
+						if (requestFn) requestFn.call(editorContainer);
+					}
+				});
+
 				var root = ReactDOM.createRoot(wrapper);
 				var props = { ref: mapRef, width: '100%', height: '100%' };
 				if (mapData) {

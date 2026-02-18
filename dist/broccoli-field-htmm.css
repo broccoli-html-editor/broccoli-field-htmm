@@ -1,4 +1,53 @@
 @charset "UTF-8";
+/* 編集用: フルスクリーン対象コンテナ。elm いっぱいに広げ、flex 縦並び */
+.broccoli-field-htmm-editor-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 編集用: ツールバー（フルスクリーンボタン） */
+.broccoli-field-htmm-toolbar {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 6px 8px;
+  background: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+}
+.broccoli-field-htmm-toolbar button {
+  padding: 4px 12px;
+  font-size: 14px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+.broccoli-field-htmm-toolbar button:hover {
+  background: #f5f5f5;
+}
+
+/* 編集用: コンテナ内のマップ領域（flex で残りを占有） */
+.broccoli-field-htmm-editor-container .broccoli-field-htmm {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* フルスクリーン時の編集コンテナ */
+.broccoli-field-htmm-editor-container:fullscreen,
+.broccoli-field-htmm-editor-container:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+}
+
 /* パッケージ領域のルート: 親いっぱいに広げ、htmm の height:100% が効くようにする */
 .broccoli-field-htmm {
   display: block;

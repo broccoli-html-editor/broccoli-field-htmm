@@ -56,7 +56,9 @@
 		container.style.height = container.style.height || '100%';
 		container.style.minHeight = container.style.minHeight || '400px';
 		var root = ReactDOM.createRoot(container);
-		root.render(React.createElement(HtmmMap, { width: '100%', height: '100%', initialMapData: mapData, readOnly: true }));
+		var dataEl = getDataEl(container);
+		var key = 'htmm-' + (dataEl.getAttribute('data-src') || dataEl.getAttribute('data-htmm-base64') || '').slice(0, 80);
+		root.render(React.createElement(HtmmMap, { key: key, width: '100%', height: '100%', initialMapData: mapData, readOnly: true }));
 	}
 
 	function initOne(elm) {
@@ -82,7 +84,10 @@
 					});
 				});
 			});
-			observer.observe(document.body, { childList: true, subtree: true });
+			// 初回マウントと HtmmMap の useEffect 完了後に観察を開始する
+			requestAnimationFrame(function() {
+				observer.observe(document.body, { childList: true, subtree: true });
+			});
 		}
 	}
 

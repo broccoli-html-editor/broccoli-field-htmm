@@ -51,10 +51,22 @@ module.exports = function(broccoli, main, mod, data, elm){
 			});
 		}).then((mapData) => {
 			return new Promise((resolve, reject) => {
-				elm.style.width = '100%';
+				// 親に高さがないと子の height:100% が効かないため、elm に高さを確保する
+				elm.style.position = 'relative';
 				elm.style.height = '100%';
 				elm.style.minHeight = '400px';
-				var root = ReactDOM.createRoot(elm);
+				var wrapper = document.createElement('div');
+				wrapper.className = 'broccoli-field-htmm';
+				// position:absolute で elm いっぱいに広げ、wrapper に確定した高さを出して htmm の 100% を効かせる
+				wrapper.style.position = 'absolute';
+				wrapper.style.top = '0';
+				wrapper.style.left = '0';
+				wrapper.style.right = '0';
+				wrapper.style.bottom = '0';
+				wrapper.style.width = '100%';
+				wrapper.style.height = '100%';
+				elm.appendChild(wrapper);
+				var root = ReactDOM.createRoot(wrapper);
 				var props = { ref: mapRef, width: '100%', height: '100%' };
 				if (mapData) {
 					props.initialMapData = mapData;

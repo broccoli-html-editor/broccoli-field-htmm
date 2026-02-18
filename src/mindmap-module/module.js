@@ -57,10 +57,23 @@
 	}
 
 	function mountMindmap(container, options) {
+		// 親に高さがないと子の height:100% が効かないため、コンテナに高さを確保する
+		container.style.position = 'relative';
 		container.style.width = container.style.width || '100%';
 		container.style.height = container.style.height || '100%';
 		container.style.minHeight = container.style.minHeight || '400px';
-		var root = ReactDOM.createRoot(container);
+		// position:absolute のラッパーでコンテナいっぱいに広げ、htmm の 100% を効かせる
+		var wrapper = document.createElement('div');
+		wrapper.className = 'htmm-mindmap-root';
+		wrapper.style.position = 'absolute';
+		wrapper.style.top = '0';
+		wrapper.style.left = '0';
+		wrapper.style.right = '0';
+		wrapper.style.bottom = '0';
+		wrapper.style.width = '100%';
+		wrapper.style.height = '100%';
+		container.appendChild(wrapper);
+		var root = ReactDOM.createRoot(wrapper);
 		var dataEl = getDataEl(container);
 		var key = 'htmm-' + (dataEl.getAttribute('data-src') || dataEl.getAttribute('data-htmm-base64') || '').slice(0, 80);
 		var props = { key: key, width: '100%', height: '100%', readOnly: true };

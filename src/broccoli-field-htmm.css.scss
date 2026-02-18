@@ -1,4 +1,18 @@
+/* パッケージ領域のルート: 親いっぱいに広げ、htmm の height:100% が効くようにする */
 .broccoli-field-htmm {
 	display: block;
+	overflow: hidden;
+}
+
+/* 公開ページ用 .htmm-mindmap: コンテナに高さを確保し、子の 100% が効くようにする */
+.htmm-mindmap {
 	position: relative;
+	height: 100%;
+	min-height: 400px;
+}
+
+/* .htmm-mindmap 内のルート: コンテナいっぱいに広げる */
+.htmm-mindmap-root {
+	display: block;
+	overflow: hidden;
 }

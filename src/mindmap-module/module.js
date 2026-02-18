@@ -56,12 +56,17 @@
 		return null;
 	}
 
+	function applyMindmapMaxHeight(container) {
+		container.style.maxHeight = (window.innerHeight * 0.8) + 'px';
+	}
+
 	function mountMindmap(container, options) {
 		// 親に高さがないと子の height:100% が効かないため、コンテナに高さを確保する
 		container.style.position = 'relative';
 		container.style.width = container.style.width || '100%';
-		container.style.height = container.style.height || '100%';
-		container.style.minHeight = container.style.minHeight || '400px';
+		container.style.height = container.style.height || '400px';
+		container.style.minHeight = container.style.minHeight || '120px';
+		applyMindmapMaxHeight(container);
 		// position:absolute のラッパーでコンテナいっぱいに広げ、htmm の 100% を効かせる
 		var wrapper = document.createElement('div');
 		wrapper.className = 'htmm-mindmap-root';
@@ -99,9 +104,17 @@
 		initializedContainers.add(elm);
 	}
 
+	var resizeListenerAdded = false;
+
 	function init() {
 		var containers = document.querySelectorAll('.htmm-mindmap');
 		containers.forEach(initOne);
+		if (!resizeListenerAdded) {
+			resizeListenerAdded = true;
+			window.addEventListener('resize', function() {
+				document.querySelectorAll('.htmm-mindmap').forEach(applyMindmapMaxHeight);
+			});
+		}
 		if (document.body) {
 			var observer = new MutationObserver(function(mutations) {
 				mutations.forEach(function(mutation) {

@@ -53,8 +53,13 @@ module.exports = function(broccoli, main, mod, data, elm){
 			return new Promise((resolve, reject) => {
 				// 親に高さがないと子の height:100% が効かないため、elm に高さを確保する
 				elm.style.position = 'relative';
-				elm.style.height = '100%';
-				elm.style.minHeight = '400px';
+				elm.style.height = '400px';
+				elm.style.minHeight = '120px';
+				var applyMaxHeight = function() {
+					elm.style.maxHeight = (window.innerHeight * 0.8) + 'px';
+				};
+				applyMaxHeight();
+				window.addEventListener('resize', applyMaxHeight);
 				var wrapper = document.createElement('div');
 				wrapper.className = 'broccoli-field-htmm';
 				// position:absolute で elm いっぱいに広げ、wrapper に確定した高さを出して htmm の 100% を効かせる

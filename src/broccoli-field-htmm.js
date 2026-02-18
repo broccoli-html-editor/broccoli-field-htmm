@@ -99,7 +99,9 @@ window.BroccoliFieldHtmm = function(broccoli){
 		var htmm = require('@tomk79/htmm');
 		var generateMindMapXML = htmm.generateMindMapXML;
 
-		var mapData = elm._editor && typeof elm._editor.getMapData === 'function' ? elm._editor.getMapData() : null;
+		// 保存時はラッパー要素が渡るため、.broccoli__edit-window-field-content から _editor を取得する
+		var contentElm = (elm.querySelector && elm.querySelector('.broccoli__edit-window-field-content')) || elm;
+		var mapData = contentElm._editor && typeof contentElm._editor.getMapData === 'function' ? contentElm._editor.getMapData() : null;
 		if( !mapData ){
 			callback(data);
 			return;

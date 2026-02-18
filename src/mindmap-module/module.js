@@ -81,7 +81,9 @@
 		var root = ReactDOM.createRoot(wrapper);
 		var dataEl = getDataEl(container);
 		var key = 'htmm-' + (dataEl.getAttribute('data-src') || dataEl.getAttribute('data-htmm-base64') || '').slice(0, 80);
-		var props = { key: key, width: '100%', height: '100%', readOnly: true };
+		var appearance = (container.getAttribute('data-appearance') || options.appearance || 'auto');
+		var lang = (container.getAttribute('data-lang') || options.lang || 'en');
+		var props = { key: key, width: '100%', height: '100%', readOnly: true, appearance: appearance, lang: lang };
 		if (options.initialMapData) {
 			props.initialMapData = options.initialMapData;
 		}

@@ -106,7 +106,9 @@ module.exports = function(broccoli, main, mod, data, elm){
 				});
 
 				var root = ReactDOM.createRoot(wrapper);
-				var props = { ref: mapRef, width: '100%', height: '100%' };
+				var appearance = (broccoli.config && broccoli.config.appearance) || (broccoli.options && broccoli.options.appearance) || 'auto';
+				var lang = (broccoli.lb && typeof broccoli.lb.getLang === 'function' ? broccoli.lb.getLang() : null) || (broccoli.config && broccoli.config.lang) || (broccoli.options && broccoli.options.lang) || 'en';
+				var props = { ref: mapRef, width: '100%', height: '100%', appearance: appearance, lang: lang };
 				if (mapData) {
 					props.initialMapData = mapData;
 				}

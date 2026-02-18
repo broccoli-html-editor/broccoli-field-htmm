@@ -12,6 +12,7 @@
 	var htmm = require('@tomk79/htmm');
 	var parseMindMapXML = htmm.parseMindMapXML;
 	var HtmmMap = htmm.HtmmMap;
+	var initializedContainers = new WeakSet();
 
 	function decodeBase64Xml(base64) {
 		try {
@@ -58,14 +59,31 @@
 		root.render(React.createElement(HtmmMap, { width: '100%', height: '100%', initialMapData: mapData, readOnly: true }));
 	}
 
+	function initOne(elm) {
+		if (initializedContainers.has(elm)) return;
+		loadMapDataFromElement(elm).then(function(mapData) {
+			if (!mapData) return;
+			if (initializedContainers.has(elm)) return;
+			mountMindmap(elm, mapData);
+			initializedContainers.add(elm);
+		});
+	}
+
 	function init() {
 		var containers = document.querySelectorAll('.htmm-mindmap');
-		// 各要素に initialMapData を渡して複数インスタンス対応
-		containers.forEach(function(elm) {
-			loadMapDataFromElement(elm).then(function(mapData) {
-				if (mapData) mountMindmap(elm, mapData);
+		containers.forEach(initOne);
+		if (document.body) {
+			var observer = new MutationObserver(function(mutations) {
+				mutations.forEach(function(mutation) {
+					Array.prototype.forEach.call(mutation.addedNodes || [], function(node) {
+						if (node.nodeType !== 1) return;
+						var list = node.querySelectorAll ? node.querySelectorAll('.htmm-mindmap') : [];
+						for (var i = 0; i < list.length; i++) initOne(list[i]);
+					});
+				});
 			});
-		});
+			observer.observe(document.body, { childList: true, subtree: true });
+		}
 	}
 
 	if (document.readyState === 'loading') {

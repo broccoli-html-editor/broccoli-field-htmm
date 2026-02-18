@@ -7,8 +7,13 @@ module.exports = function(broccoli, main, mod, data, elm){
 	var ReactDOM = require('react-dom/client');
 	var htmm = require('@tomk79/htmm');
 	var parseMindMapXML = htmm.parseMindMapXML;
-	var useHtmmStore = htmm.useHtmmStore;
 	var HtmmMap = htmm.HtmmMap;
+
+	var mapRef = React.createRef();
+
+	this.getMapData = function() {
+		return mapRef.current ? mapRef.current.getMapData() : null;
+	};
 
 	this.init = ( callback ) => {
 		return new Promise((resolve, reject) => {
@@ -46,17 +51,15 @@ module.exports = function(broccoli, main, mod, data, elm){
 			});
 		}).then((mapData) => {
 			return new Promise((resolve, reject) => {
-				var store = useHtmmStore.getState();
-				if (mapData) {
-					store.loadMap(mapData);
-				} else {
-					store.newMap('New Mind Map');
-				}
 				elm.style.width = '100%';
 				elm.style.height = '100%';
 				elm.style.minHeight = '400px';
 				var root = ReactDOM.createRoot(elm);
-				root.render(React.createElement(HtmmMap, { width: '100%', height: '100%' }));
+				var props = { ref: mapRef, width: '100%', height: '100%' };
+				if (mapData) {
+					props.initialMapData = mapData;
+				}
+				root.render(React.createElement(HtmmMap, props));
 				resolve();
 			});
 		}).catch((e) => {

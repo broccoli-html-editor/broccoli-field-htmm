@@ -43,6 +43,7 @@ window.BroccoliFieldHtmm = function(broccoli){
 
 		var Editor = require('./editor/editor.js');
 		var editor = new Editor(broccoli, this, mod, data, elm);
+		elm._editor = editor;
 		editor.init( callback );
 		return;
 	}
@@ -85,7 +86,7 @@ window.BroccoliFieldHtmm = function(broccoli){
 
 	/**
 	 * エディタUIで編集した内容を保存
-	 * htmm のストアから mapData を取り出し、.mm XML を resMgr に保存する。
+	 * エディタの ref (getMapData) から mapData を取り出し、.mm XML を resMgr に保存する。
 	 */
 	this.saveEditorContent = function( elm, data, mod, callback ){
 		if( typeof(data) !== typeof({}) ){
@@ -96,10 +97,9 @@ window.BroccoliFieldHtmm = function(broccoli){
 		}
 
 		var htmm = require('@tomk79/htmm');
-		var useHtmmStore = htmm.useHtmmStore;
 		var generateMindMapXML = htmm.generateMindMapXML;
 
-		var mapData = useHtmmStore.getState().mapData;
+		var mapData = elm._editor && typeof elm._editor.getMapData === 'function' ? elm._editor.getMapData() : null;
 		if( !mapData ){
 			callback(data);
 			return;

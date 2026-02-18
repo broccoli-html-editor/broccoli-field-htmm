@@ -34,41 +34,56 @@
 		return child || container;
 	}
 
-	function loadMapDataFromElement(elm) {
+	/**
+	 * 要素からマウント用の情報を取得する。
+	 * - base64 あり: { type: 'data', mapData }（base64 優先。data-src と両方あっても data で渡す）
+	 * - data-src のみ: { type: 'src', url }（HtmmMap の src で読み込む）
+	 * - どちらもなし: null
+	 */
+	function getMountInfo(elm) {
 		var dataEl = getDataEl(elm);
 		var resUrl = dataEl.getAttribute('data-src');
 		var base64 = dataEl.getAttribute('data-htmm-base64');
-		if (base64 && base64.trim() !== '') {
-			return Promise.resolve(decodeBase64Xml(base64.trim()));
+		var hasBase64 = base64 && base64.trim() !== '';
+		var hasSrc = resUrl && resUrl.trim() !== '';
+		if (hasBase64) {
+			var mapData = decodeBase64Xml(base64.trim());
+			return mapData ? { type: 'data', mapData: mapData } : null;
 		}
-		if (resUrl && resUrl.trim() !== '') {
-			return htmm.loadMindMapURL(resUrl.trim()).catch(function(err) {
-				console.warn('Failed to load mindmap from URL:', resUrl, err);
-				return null;
-			});
+		if (hasSrc) {
+			return { type: 'src', url: resUrl.trim() };
 		}
-		return Promise.resolve(null);
+		return null;
 	}
 
-	function mountMindmap(container, mapData) {
-		if (!mapData) return;
+	function mountMindmap(container, options) {
 		container.style.width = container.style.width || '100%';
 		container.style.height = container.style.height || '100%';
 		container.style.minHeight = container.style.minHeight || '400px';
 		var root = ReactDOM.createRoot(container);
 		var dataEl = getDataEl(container);
 		var key = 'htmm-' + (dataEl.getAttribute('data-src') || dataEl.getAttribute('data-htmm-base64') || '').slice(0, 80);
-		root.render(React.createElement(HtmmMap, { key: key, width: '100%', height: '100%', initialMapData: mapData, readOnly: true }));
+		var props = { key: key, width: '100%', height: '100%', readOnly: true };
+		if (options.initialMapData) {
+			props.initialMapData = options.initialMapData;
+		}
+		if (options.src) {
+			props.src = options.src;
+		}
+		root.render(React.createElement(HtmmMap, props));
 	}
 
 	function initOne(elm) {
 		if (initializedContainers.has(elm)) return;
-		loadMapDataFromElement(elm).then(function(mapData) {
-			if (!mapData) return;
-			if (initializedContainers.has(elm)) return;
-			mountMindmap(elm, mapData);
-			initializedContainers.add(elm);
-		});
+		var info = getMountInfo(elm);
+		if (!info) return;
+		if (initializedContainers.has(elm)) return;
+		if (info.type === 'src') {
+			mountMindmap(elm, { src: info.url });
+		} else {
+			mountMindmap(elm, { initialMapData: info.mapData });
+		}
+		initializedContainers.add(elm);
 	}
 
 	function init() {

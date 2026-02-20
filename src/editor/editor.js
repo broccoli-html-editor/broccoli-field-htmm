@@ -64,46 +64,10 @@ module.exports = function(broccoli, main, mod, data, elm){
 				var editorContainer = document.createElement('div');
 				editorContainer.className = 'broccoli-field-htmm-editor-container';
 
-				var toolbar = document.createElement('div');
-				toolbar.className = 'broccoli-field-htmm-toolbar';
-				var fullscreenBtn = document.createElement('button');
-				fullscreenBtn.type = 'button';
-				fullscreenBtn.textContent = _this.lb.get('ui_label.fullscreen');
-				toolbar.appendChild(fullscreenBtn);
-				editorContainer.appendChild(toolbar);
-
 				var wrapper = document.createElement('div');
 				wrapper.className = 'broccoli-field-htmm';
 				editorContainer.appendChild(wrapper);
 				elm.appendChild(editorContainer);
-
-				function isFullscreen() {
-					var el = document.fullscreenElement || document.webkitFullscreenElement;
-					return el === editorContainer;
-				}
-				function updateFullscreenButtonLabel() {
-					fullscreenBtn.textContent = isFullscreen()
-						? _this.lb.get('ui_label.exit_fullscreen')
-						: _this.lb.get('ui_label.fullscreen');
-				}
-				function onFullscreenChange() {
-					updateFullscreenButtonLabel();
-					if (!isFullscreen()) {
-						window.dispatchEvent(new Event('resize'));
-					}
-				}
-				document.addEventListener('fullscreenchange', onFullscreenChange);
-				document.addEventListener('webkitfullscreenchange', onFullscreenChange);
-
-				fullscreenBtn.addEventListener('click', function() {
-					if (isFullscreen()) {
-						var exitFn = document.exitFullscreen || document.webkitExitFullscreen;
-						if (exitFn) exitFn.call(document);
-					} else {
-						var requestFn = editorContainer.requestFullscreen || editorContainer.webkitRequestFullscreen;
-						if (requestFn) requestFn.call(editorContainer);
-					}
-				});
 
 				var root = ReactDOM.createRoot(wrapper);
 				var appearance = (broccoli.config && broccoli.config.appearance) || (broccoli.options && broccoli.options.appearance) || 'auto';

@@ -1,5 +1,3 @@
 ,en,ja,zh,zh-TW
 ui_label.ok,OK,OK,OK,OK
 ui_label.cancel,Cancel,"キャンセル",,
-ui_label.fullscreen,Fullscreen,フルスクリーン,全屏,全螢幕
-ui_label.exit_fullscreen,Exit fullscreen,フルスクリーン終了,退出全屏,結束全螢幕

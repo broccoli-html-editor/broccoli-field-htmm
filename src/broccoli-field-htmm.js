@@ -9,10 +9,7 @@ window.BroccoliFieldHtmm = function(broccoli){
 	this.mkPreviewHtml = function( fieldData, mod, callback ){
 		// InstanceTreeViewで利用する
 		fieldData = fieldData||{};
-		var rtn = '';
-		if( fieldData.src ){
-			rtn += fieldData.src;
-		}
+		var rtn = fieldData.subject != null ? String(fieldData.subject) : '';
 		rtn = $('<div>'+rtn+'</div>');
 
 		callback( rtn.get(0).outerHTML );
@@ -28,6 +25,7 @@ window.BroccoliFieldHtmm = function(broccoli){
 			rtn = {
 				"resKey": "",
 				"src": "",
+				"subject": "",
 			};
 		}
 		return rtn;
@@ -106,6 +104,8 @@ window.BroccoliFieldHtmm = function(broccoli){
 			callback(data);
 			return;
 		}
+
+		data.subject = (mapData.root && mapData.root.text != null) ? String(mapData.root.text) : '';
 
 		var xmlString = generateMindMapXML(mapData);
 		// UTF-8 を考慮した base64 エンコード（マルチバイト文字対応）

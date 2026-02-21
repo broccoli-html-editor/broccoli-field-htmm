@@ -14,7 +14,7 @@ $ npm install broccoli-field-htmm --save
 
 ## 更新履歴 - Change log
 
-### broccoli-field-htmm v0.0.1 (リリース日未定)
+### broccoli-field-htmm v0.0.1 (2026年2月21日)
 
 - 初回リリース。
 
